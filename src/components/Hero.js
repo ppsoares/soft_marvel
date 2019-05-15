@@ -1,37 +1,88 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
-import './Hero.scss';
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
+
+import "./Hero.scss";
+import Img from "./Img.png";
+
+const styles = {
+  card: {
+    maxWidth: 1000
+  },
+  media: {
+    height: 500
+  },
+  dense: {
+    marginTop: 16
+  }
+};
 
 class Hero extends Component {
   state = {
     isGetting: false,
     hasGetError: false,
-    product: {}
-  }
+    multiline: ""
+  };
+
+  handleChange = name => event => {
+    this.setState({
+      [name]: event.target.value
+    });
+  };
 
   render() {
+    const { classes } = this.props;
+
     return (
       <div className="Hero">
         <div className="header">
-          <h1>Produto Capitão</h1>
+          <h1>Edit Hero</h1>
         </div>
 
         <div className="container">
           <form>
             <fieldset>
-              <legend>Descricao</legend>
-              <input
-                name="description"
-                type="text"
-                maxLength="150"
-                value='Teste'
-              />
+              <Card className={classes.card}>
+                <CardActionArea>
+                  <CardMedia
+                    className={classes.media}
+                    image={Img}
+                    title="Contemplative Reptile"
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      Hercules
+                    </Typography>
+                    <Typography component="p">
+                      <TextField
+                        id="outlined-multiline-flexible"
+                        label="Descrição Heroe"
+                        multiline
+                        value={this.state.multiline}
+                        onChange={this.handleChange("multiline")}
+                        className={classes.textField}
+                        margin="normal"
+                        variant="outlined"
+                      />
+                    </Typography>
+                    <button>
+                      <Link to="/">Salvar</Link>
+                    </button>
+                    <button>
+                      <Link to="/">Cancelar</Link>
+                    </button>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
             </fieldset>
-            <button >
-              <Link to="/" >Salvar</Link>
-            </button>
-            <Link to="/" >Cancelar</Link>
           </form>
         </div>
       </div>
@@ -39,4 +90,8 @@ class Hero extends Component {
   }
 }
 
-export default Hero;
+Hero.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(Hero);

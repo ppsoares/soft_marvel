@@ -8,6 +8,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
+import Img from './../Img.png';
+
 
 const styles = {
   card: {
@@ -28,7 +30,7 @@ class CardGlyph extends Component {
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image="/static/images/cards/contemplative-reptile.jpg"
+            image= {Img}
             title="Contemplative Reptile"
           />
           <CardContent>

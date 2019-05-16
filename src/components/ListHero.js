@@ -35,16 +35,15 @@ const mapDispatchToProps = dispatch => ({
   getHeros: () => {
     fetch(API_URL)
       .then(response => response.json())
-      .then(heros => {
-        console.log(heros);
+      .then(response => {
         dispatch({
           type: "SET_HEROS",
-          heros
+          heros: response.data.results
         });
       })
       .catch(() => {
         dispatch({
-          TYPE: "SET_HEROS",
+          type: "SET_HEROS",
           heros: []
         });
       });
@@ -61,7 +60,7 @@ const mapStateToProps = state => ({
 class ListaHerois extends Component {
   componentDidMount() {
     console.log(this.props);
-    // this.props.getHeros();
+    this.props.getHeros();
   }
 
   render() {
@@ -69,25 +68,30 @@ class ListaHerois extends Component {
 
     const { heros } = this.props;
 
+    console.log(this.props);
+
     return (
       <div className="counatiner">
         <GridList cellHeight={160} cols={3}>
-          {heros
-            .filter(heros => heros.nome.match(regex))
-            .map(hero => (
-              <GridListTile key={heros.id} style={{ height: "auto" }}>
-                <ListSubheader component="div">
-                  <Link to="/hero">
-                    <CardGlyph
-                      id={hero.id}
-                      nome={hero.nome}
-                      descricao={hero.descricao}
-                      imagem={Img}
-                    />
-                  </Link>
-                </ListSubheader>
-              </GridListTile>
-            ))}
+          {heros.length &&
+            heros
+              .filter(hero => hero.name.match(regex))
+              .map(hero => (
+                <GridListTile key={hero.id} style={{ height: "auto" }}>
+                  <ListSubheader component="div">
+                    <Link to={`/hero/${hero.id}`}>
+                      <CardGlyph
+                        id={hero.id}
+                        nome={hero.name}
+                        descricao={hero.description}
+                        imagem={`${hero.thumbnail.path}.${
+                          hero.thumbnail.extension
+                        }`}
+                      />
+                    </Link>
+                  </ListSubheader>
+                </GridListTile>
+              ))}
         </GridList>
       </div>
     );
@@ -96,6 +100,5 @@ class ListaHerois extends Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
-  withStyles(styles)
-)(ListaHerois);
+  mapDispatchToProps
+)(withStyles(styles)(ListaHerois));

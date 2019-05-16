@@ -2,41 +2,8 @@ import { createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 const INITIAL_STATE = {
-  heros: [
-    {
-      id: 1,
-      nome: "Pedro",
-      descricao: "primeiro heroe"
-    },
-    {
-      id: 2,
-      nome: "Daniel",
-      descricao: "Segundo heroe"
-    },
-    {
-      id: 3,
-      nome: "Renan",
-      descricao: "terceiro heroe"
-    },
-    {
-      id: 4,
-      nome: "Andre",
-      descricao: "Quarto heroe"
-    },
-    {
-      id: 5,
-      nome: "Reinaldo",
-      descricao: "quinto heroe"
-    }
-  ],
-  filter: "",
-  hero: [
-    {
-      id: 89,
-      nome: "super",
-      descricao: "especial"
-    }
-  ]
+  heros: [],
+  filter: ""
 };
 
 function reducer(state = INITIAL_STATE, action) {

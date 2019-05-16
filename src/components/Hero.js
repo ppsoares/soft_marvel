@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -25,6 +26,32 @@ const styles = {
   }
 };
 
+const mapDispatchToProps = dispatch => ({
+  getHeros: () => {
+    fetch("")
+      .then(response => response.json())
+      .then(response => {
+        dispatch({
+          type: "SET_HEROS",
+          heros: response.data.results
+        });
+      })
+      .catch(() => {
+        dispatch({
+          type: "SET_HEROS",
+          heros: []
+        });
+      });
+  }
+});
+
+const mapStateToProps = state => ({
+  heros: state.heros,
+  filter: state.filter,
+  isGetting: false,
+  hasGetError: false
+});
+
 class Hero extends Component {
   state = {
     isGetting: false,
@@ -37,6 +64,10 @@ class Hero extends Component {
       [name]: event.target.value
     });
   };
+
+  componentDidMount() {
+    const { match } = this.props;
+  }
 
   render() {
     const { classes } = this.props;
@@ -94,4 +125,7 @@ Hero.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Hero);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(Hero));

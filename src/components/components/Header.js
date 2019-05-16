@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import './Header.scss';
+import "./Header.scss";
 
 class Header extends Component {
   render() {
@@ -11,17 +11,18 @@ class Header extends Component {
           <h1>Herois Marvel</h1>
           <input
             type="text"
-            placeholder="Buscar produto"
-            onChange={(e) => {
+            placeholder="Buscar herois"
+            onChange={e => {
               this.props.dispatch({
                 type: "SET_FILTER",
                 filter: e.target.value
-              })
-            }} />
+              });
+            }}
+          />
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default (Header);
+export default connect()(Header);

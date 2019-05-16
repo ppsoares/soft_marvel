@@ -8,8 +8,9 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 import { Link } from "react-router-dom";
 
 import CardGlyph from "./components/CardGlyph";
+import Img from "./Img.png";
 
-// const API_HASHL = "af6fe4504130de33d24b21dd68baa994";
+// const API_HASH = "af6fe4504130de33d24b21dd68baa994";
 const API_URL =
   "https://gateway.marvel.com:443/v1/public/characters?apikey=af6fe4504130de33d24b21dd68baa994";
 
@@ -81,6 +82,7 @@ class ListaHerois extends Component {
                       id={hero.id}
                       nome={hero.nome}
                       descricao={hero.descricao}
+                      imagem={Img}
                     />
                   </Link>
                 </ListSubheader>

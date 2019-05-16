@@ -59,7 +59,7 @@ class Hero extends Component {
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Hercules
+                      Marcos
                     </Typography>
                     <Typography component="p">
                       <TextField

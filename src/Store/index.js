@@ -29,7 +29,14 @@ const INITIAL_STATE = {
       descricao: "quinto heroe"
     }
   ],
-  filter: ""
+  filter: "",
+  hero: [
+    {
+      id: 89,
+      nome: "super",
+      descricao: "especial"
+    }
+  ]
 };
 
 function reducer(state = INITIAL_STATE, action) {

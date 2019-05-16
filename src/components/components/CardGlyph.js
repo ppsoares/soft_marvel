@@ -8,8 +8,6 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 
-import Img from "./../Img.png";
-
 const styles = {
   card: {
     maxWidth: 345
@@ -28,7 +26,7 @@ class CardGlyph extends Component {
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image={Img}
+            image={this.props.imagem}
             title="Contemplative Reptile"
           />
           <CardContent>

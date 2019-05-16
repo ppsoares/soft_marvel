@@ -26,24 +26,7 @@ const styles = {
   }
 };
 
-const mapDispatchToProps = dispatch => ({
-  getHeros: () => {
-    fetch("")
-      .then(response => response.json())
-      .then(response => {
-        dispatch({
-          type: "SET_HEROS",
-          heros: response.data.results
-        });
-      })
-      .catch(() => {
-        dispatch({
-          type: "SET_HEROS",
-          heros: []
-        });
-      });
-  }
-});
+const mapDispatchToProps = dispatch => ({});
 
 const mapStateToProps = state => ({
   heros: state.heros,
@@ -72,13 +55,15 @@ class Hero extends Component {
   render() {
     const { classes } = this.props;
 
+    const { hero } = this.state;
+
     return (
       <div className="Hero">
         <div className="header">
           <h1>Edit Hero</h1>
         </div>
 
-        <div className="container">
+        <div className={classes.card}>
           <form>
             <fieldset>
               <Card className={classes.card}>
@@ -90,7 +75,7 @@ class Hero extends Component {
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Marcos
+                      Marcos -
                     </Typography>
                     <Typography component="p">
                       <TextField

@@ -6,11 +6,10 @@ import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import CardGlyph from "./components/CardGlyph";
-import Img from "./Img.png";
 
-// const API_HASH = "af6fe4504130de33d24b21dd68baa994";
 const API_URL =
   "https://gateway.marvel.com:443/v1/public/characters?apikey=af6fe4504130de33d24b21dd68baa994";
 
@@ -20,7 +19,8 @@ const styles = theme => ({
     flexWrap: "wrap",
     justifyContent: "space-around",
     overflow: "hidden",
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: "#000000",
+    marginTop: "15px"
   },
   gridList: {
     width: 1000,
@@ -66,13 +66,16 @@ class ListaHerois extends Component {
   render() {
     const regex = new RegExp(`^(.*)${this.props.filter}(.*)$`, "ig");
 
+    const { classes } = this.props;
+
     const { heros } = this.props;
 
     console.log(this.props);
 
     return (
-      <div className="counatiner">
-        <GridList cellHeight={160} cols={3}>
+      // <div className='body-app'
+      <div className={classes.root}>
+        <GridList className={classes.gridList} cellHeight={160} cols={4}>
           {heros.length &&
             heros
               .filter(hero => hero.name.match(regex))
@@ -83,7 +86,7 @@ class ListaHerois extends Component {
                       <CardGlyph
                         id={hero.id}
                         nome={hero.name}
-                        descricao={hero.description}
+                        //   descricao={hero.description}
                         imagem={`${hero.thumbnail.path}.${
                           hero.thumbnail.extension
                         }`}
@@ -97,6 +100,10 @@ class ListaHerois extends Component {
     );
   }
 }
+
+ListaHerois.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
 export default connect(
   mapStateToProps,

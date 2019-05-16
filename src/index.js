@@ -7,6 +7,8 @@ import store from "./Store";
 import App from "./components/App";
 import Hero from "./components/Hero";
 
+import "./index.scss";
+
 render(
   <Provider store={store}>
     <Router>

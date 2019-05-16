@@ -26,7 +26,9 @@ const styles = {
   }
 };
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  getHeros: () => {}
+});
 
 const mapStateToProps = state => ({
   heros: state.heros,
@@ -37,8 +39,6 @@ const mapStateToProps = state => ({
 
 class Hero extends Component {
   state = {
-    isGetting: false,
-    hasGetError: false,
     multiline: ""
   };
 
@@ -49,56 +49,66 @@ class Hero extends Component {
   };
 
   componentDidMount() {
-    const { match } = this.props;
+    const { match, heros } = this.props;
+
+    console.log(heros);
+
+    this.ids = match.params.id || 0;
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, heros } = this.props;
 
-    const { hero } = this.state;
+    const { id } = this.props.match.params;
+
+    const dados = heros.find(hero => hero.id == id) || {
+      name: "Não informado",
+      path: "",
+      extension: ""
+    };
+    console.log(dados);
+    // debugger;
 
     return (
-      <div className="Hero">
+      <div className="app">
         <div className="header">
-          <h1>Edit Hero</h1>
+          <h1>Informações do Heroi</h1>
         </div>
 
         <div className={classes.card}>
           <form>
-            <fieldset>
-              <Card className={classes.card}>
-                <CardActionArea>
-                  <CardMedia
-                    className={classes.media}
-                    image={Img}
-                    title="Contemplative Reptile"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Marcos -
-                    </Typography>
-                    <Typography component="p">
-                      <TextField
-                        id="outlined-multiline-flexible"
-                        label="Descrição Heroe"
-                        multiline
-                        value={this.state.multiline}
-                        onChange={this.handleChange("multiline")}
-                        className={classes.textField}
-                        margin="normal"
-                        variant="outlined"
-                      />
-                    </Typography>
-                    <button>
-                      <Link to="/">Salvar</Link>
-                    </button>
-                    <button>
-                      <Link to="/">Cancelar</Link>
-                    </button>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </fieldset>
+            <Card className={classes.card}>
+              <CardActionArea>
+                <CardMedia
+                  className={classes.media}
+                  image={`${dados.thumbnail.path}.${dados.thumbnail.extension}`}
+                  title="Contemplative Reptile"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    {dados.name}
+                  </Typography>
+                  <Typography component="p">
+                    <TextField
+                      id="outlined-multiline-flexible"
+                      label="Descrição"
+                      multiline
+                      value={this.state.multiline}
+                      onChange={this.handleChange("multiline")}
+                      className={classes.textField}
+                      margin="normal"
+                      variant="outlined"
+                    />
+                  </Typography>
+                  <button>
+                    <Link to="/">Salvar</Link>
+                  </button>
+                  <button>
+                    <Link to="/">Cancelar</Link>
+                  </button>
+                </CardContent>
+              </CardActionArea>
+            </Card>
           </form>
         </div>
       </div>

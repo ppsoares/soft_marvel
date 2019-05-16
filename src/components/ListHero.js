@@ -59,18 +59,13 @@ const mapStateToProps = state => ({
 
 class ListaHerois extends Component {
   componentDidMount() {
-    console.log(this.props);
     this.props.getHeros();
   }
 
   render() {
     const regex = new RegExp(`^(.*)${this.props.filter}(.*)$`, "ig");
-
     const { classes } = this.props;
-
     const { heros } = this.props;
-
-    console.log(this.props);
 
     return (
       // <div className='body-app'

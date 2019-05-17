@@ -1,4 +1,4 @@
-import { createStore } from "redux";
+import { createStore, compose } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 const INITIAL_STATE = {
@@ -28,6 +28,10 @@ function reducer(state = INITIAL_STATE, action) {
   }
 }
 
-const store = createStore(reducer, composeWithDevTools());
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const enhancer = composeEnhancers();
+
+const store = createStore(reducer, enhancer);
 
 export default store;

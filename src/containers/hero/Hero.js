@@ -13,18 +13,18 @@ import TextField from "@material-ui/core/TextField";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-
 import Fab from "@material-ui/core/Fab";
 import Icon from "@material-ui/core/Icon";
+import Button from "@material-ui/core/Button";
 
 import "./Hero.scss";
-// import Img from "./Img.png";
+
+import * as heroActions from "../../Store/hero/actions";
 
 const styles = {
   card: {
     maxWidth: 1000,
-    marginLeft: "60px",
-    marginTop: "15px"
+    margin: "15px auto 0"
   },
   media: {
     height: 500
@@ -51,13 +51,20 @@ class Hero extends Component {
     multiline: ""
   };
 
-  saveHero(e) {
-    e.name = "Pedro Teste";
-  }
+  // clickIncluir = (e, mass) => {
+  //   this.props.dispatch(heroActions.incluirSerie(e, mass));
+
+  //   this.heros = mass;
+
+  //   this.setState({
+  //     heros: mass
+  //   });
+
+  //   this.state.multiline = "";
+  // };
 
   incluirSerie(e, mass) {
     const Arr = mass.series.items;
-    console.log(e);
     Arr.push({
       name: e,
       resourceURI: "Pedro URL"
@@ -127,12 +134,16 @@ class Hero extends Component {
           <form>
             <Card className={classes.card}>
               <CardActionArea>
-                <CardMedia
-                  className={classes.media}
-                  image={`${dados.thumbnail.path}.${dados.thumbnail.extension}`}
-                  // image={Img}
-                  title="Contemplative Reptile"
-                />
+                {dados.thumbnail && (
+                  <CardMedia
+                    className={classes.media}
+                    image={`${dados.thumbnail.path}.${
+                      dados.thumbnail.extension
+                    }`}
+                    // image={Img}
+                    title="Contemplative Reptile"
+                  />
+                )}
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">
                     {dados.name}
@@ -151,6 +162,7 @@ class Hero extends Component {
                     />
                     <Icon
                       onClick={() =>
+                        // this.clickIncluir(this.state.multiline, dados)
                         this.incluirSerie(this.state.multiline, dados)
                       }
                     >
@@ -173,7 +185,7 @@ class Hero extends Component {
                                 >
                                   <ListItemText primary={value.name} />
                                   <Fab
-                                    color="primary"
+                                    color="inherit"
                                     aria-label="Edit"
                                     className={classes.fab}
                                   >
@@ -193,9 +205,15 @@ class Hero extends Component {
                       </ListItem>
                     </List>
                   </Typography>
-                  <button>
-                    <Link to="/">Voltar</Link>
-                  </button>
+                  <Button
+                    variant="contained"
+                    color="inherit"
+                    className={classes.button}
+                  >
+                    <Link style={{ textDecoration: "none" }} to="/">
+                      Voltar
+                    </Link>
+                  </Button>
                 </CardContent>
               </CardActionArea>
             </Card>

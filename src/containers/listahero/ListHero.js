@@ -8,10 +8,10 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import CardGlyph from "../components/CardGlyph";
+import CardGlyph from "../../components/CardGlyph";
 
 const API_URL =
-  "https://gateway.marvel.com:443/v1/public/characters?apikey=af6fe4504130de33d24b21dd68baa994";
+  "https://gateway.marvel.com:443/v1/public/characters?limit=50&apikey=af6fe4504130de33d24b21dd68baa994";
 
 const styles = theme => ({
   root: {
@@ -75,7 +75,10 @@ class ListHero extends Component {
               .map(hero => (
                 <GridListTile key={hero.id} style={{ height: "auto" }}>
                   <ListSubheader component="div">
-                    <Link to={`/hero/${hero.id}`}>
+                    <Link
+                      style={{ textDecoration: "none" }}
+                      to={`/hero/${hero.id}`}
+                    >
                       <CardGlyph
                         id={hero.id}
                         nome={hero.name}

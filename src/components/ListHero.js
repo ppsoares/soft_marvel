@@ -59,7 +59,9 @@ const mapStateToProps = state => ({
 
 class ListaHerois extends Component {
   componentDidMount() {
-    this.props.getHeros();
+    console.log(this.props.heros.length);
+    !this.props.heros.length && this.props.getHeros();
+    // this.props.getHeros();
   }
 
   render() {

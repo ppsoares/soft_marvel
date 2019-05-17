@@ -59,13 +59,15 @@ class Hero extends Component {
     const Arr = mass.series.items;
     console.log(e);
     Arr.push({
-      name: "Pedro Teste",
+      name: e,
       resourceURI: "Pedro URL"
     });
 
     this.setState({
       heros: mass
     });
+
+    this.state.multiline = "";
   }
 
   retirarSerie(item, mass) {
@@ -148,7 +150,9 @@ class Hero extends Component {
                       margin="normal"
                     />
                     <Icon
-                      onClick={() => this.incluirSerie(Typography.value, dados)}
+                      onClick={() =>
+                        this.incluirSerie(this.state.multiline, dados)
+                      }
                     >
                       +
                     </Icon>

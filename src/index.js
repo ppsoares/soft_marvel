@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import store from "./Store";
 
 import App from "./components/App";
-import Hero from "./components/Hero";
+import Hero from "./components/hero/Hero";
 
 import "./index.scss";
 

@@ -8,7 +8,7 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import CardGlyph from "./components/CardGlyph";
+import CardGlyph from "../components/CardGlyph";
 
 const API_URL =
   "https://gateway.marvel.com:443/v1/public/characters?apikey=af6fe4504130de33d24b21dd68baa994";
@@ -52,16 +52,13 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
   heros: state.heros,
-  filter: state.filter,
-  isGetting: false,
-  hasGetError: false
+  filter: state.filter
 });
 
-class ListaHerois extends Component {
+class ListHero extends Component {
   componentDidMount() {
     console.log(this.props.heros.length);
     !this.props.heros.length && this.props.getHeros();
-    // this.props.getHeros();
   }
 
   render() {
@@ -96,11 +93,11 @@ class ListaHerois extends Component {
   }
 }
 
-ListaHerois.propTypes = {
+ListHero.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles)(ListaHerois));
+)(withStyles(styles)(ListHero));

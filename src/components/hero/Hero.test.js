@@ -1,13 +1,13 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import App from "./App";
+import Hero from "./Hero";
 
-describe("<App />", () => {
+describe("<Hero />", () => {
   let wrapper;
 
   test("mounts", () => {
-    wrapper = shallow(<App />);
+    wrapper = shallow(<Hero />);
 
     expect(wrapper).toHaveLength(1);
   });

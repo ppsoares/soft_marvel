@@ -18,6 +18,11 @@ function reducer(state = INITIAL_STATE, action) {
         ...state,
         filter: action.filter
       };
+    case "SET_EDIT":
+      return {
+        ...state,
+        filter: action.edit
+      };
     default:
       return state;
   }

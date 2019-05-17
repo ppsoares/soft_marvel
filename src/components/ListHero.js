@@ -68,7 +68,6 @@ class ListaHerois extends Component {
     const { heros } = this.props;
 
     return (
-      // <div className='body-app'
       <div className={classes.root}>
         <GridList className={classes.gridList} cellHeight={160} cols={4}>
           {heros.length &&
@@ -81,7 +80,6 @@ class ListaHerois extends Component {
                       <CardGlyph
                         id={hero.id}
                         nome={hero.name}
-                        //   descricao={hero.description}
                         imagem={`${hero.thumbnail.path}.${
                           hero.thumbnail.extension
                         }`}

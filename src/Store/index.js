@@ -1,5 +1,4 @@
 import { createStore, compose } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
 
 const INITIAL_STATE = {
   heros: [],

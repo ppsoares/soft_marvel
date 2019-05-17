@@ -19,7 +19,7 @@ import Button from "@material-ui/core/Button";
 
 import "./Hero.scss";
 
-import * as heroActions from "../../Store/hero/actions";
+import * as heroActions from "../../store/hero/actions";
 
 const styles = {
   card: {
@@ -51,17 +51,16 @@ class Hero extends Component {
     multiline: ""
   };
 
-  // clickIncluir = (e, mass) => {
-  //   this.props.dispatch(heroActions.incluirSerie(e, mass));
+  clickIncluir = (e, mass) => {
+    this.props.dispatch(heroActions.incluirSerie(e, mass));
 
-  //   this.heros = mass;
+    this.heros = mass;
 
-  //   this.setState({
-  //     heros: mass
-  //   });
-
-  //   this.state.multiline = "";
-  // };
+    this.setState({
+      heros: mass,
+      multiline: ""
+    });
+  };
 
   incluirSerie(e, mass) {
     const Arr = mass.series.items;
@@ -71,10 +70,9 @@ class Hero extends Component {
     });
 
     this.setState({
-      heros: mass
+      heros: mass,
+      multiline: ""
     });
-
-    this.state.multiline = "";
   }
 
   retirarSerie(item, mass) {
@@ -140,7 +138,6 @@ class Hero extends Component {
                     image={`${dados.thumbnail.path}.${
                       dados.thumbnail.extension
                     }`}
-                    // image={Img}
                     title="Contemplative Reptile"
                   />
                 )}
@@ -154,7 +151,6 @@ class Hero extends Component {
                       label="Nova serie"
                       multiline
                       rowsMax="1"
-                      // fullWidth
                       value={this.state.multiline}
                       onChange={this.handleChange("multiline")}
                       className={classes.textField}
@@ -162,7 +158,6 @@ class Hero extends Component {
                     />
                     <Icon
                       onClick={() =>
-                        // this.clickIncluir(this.state.multiline, dados)
                         this.incluirSerie(this.state.multiline, dados)
                       }
                     >

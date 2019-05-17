@@ -2,7 +2,7 @@
 
 Projeto para carregar os herois da Marvel, podendno validar as informações
 das séries que os mesmos tiveram participação.
-Pode-se adicionar uma nova série ou retirar, as informações salvas em cach,
+Pode-se adicionar uma nova série ou retirar, as informações salvas em cache,
 ou seja, se atualizar a pagina perde-se as alterações.
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/9c87ab01-0ab1-485e-b171-7e5a51f199ce/deploy-status)](https://app.netlify.com/sites/soft-marvel-pp/deploys)

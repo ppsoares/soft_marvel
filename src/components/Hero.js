@@ -18,7 +18,7 @@ import Fab from "@material-ui/core/Fab";
 import Icon from "@material-ui/core/Icon";
 
 import "./Hero.scss";
-import Img from "./Img.png";
+// import Img from "./Img.png";
 
 const styles = {
   card: {
@@ -127,8 +127,8 @@ class Hero extends Component {
               <CardActionArea>
                 <CardMedia
                   className={classes.media}
-                  // image={`${dados.thumbnail.path}.${dados.thumbnail.extension}`}
-                  image={Img}
+                  image={`${dados.thumbnail.path}.${dados.thumbnail.extension}`}
+                  // image={Img}
                   title="Contemplative Reptile"
                 />
                 <CardContent>

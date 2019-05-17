@@ -19,7 +19,7 @@ import Button from "@material-ui/core/Button";
 
 import "./Hero.scss";
 
-import * as heroActions from "../../store/hero/actions";
+import * as heroActions from "../../Store/hero/actions";
 
 const styles = {
   card: {
